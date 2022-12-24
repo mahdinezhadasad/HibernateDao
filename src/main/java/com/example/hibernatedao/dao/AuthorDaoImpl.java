@@ -28,7 +28,6 @@ public class AuthorDaoImpl implements AuthorDao {
                 "WHERE a.firstName = :first_name and a.lastName = :last_name", Author.class);
         query.setParameter("first_name", firstName);
         query.setParameter("last_name", lastName);
-    
         return query.getSingleResult();
     }
     
