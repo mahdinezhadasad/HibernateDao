@@ -2,7 +2,11 @@ package com.example.hibernatedao.dao;
 
 import com.example.hibernatedao.domain.Author;
 
+import java.util.List;
+
 public interface AuthorDao {
+    
+    List<Author> listAuthorByLastNameLike(String lastName);
     
     Author getById(Long id);
     
@@ -13,4 +17,6 @@ public interface AuthorDao {
     Author updateAuthor(Author author);
     
     void deleteAuthorById(Long id);
+    
+    List<Author> findAll();
 }
