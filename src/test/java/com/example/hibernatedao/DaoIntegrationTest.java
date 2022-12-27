@@ -195,4 +195,12 @@ public class DaoIntegrationTest {
         Author deleted = authorDao.getById (saved.getId ());
         assertThat (deleted).isNull ();
     }
+    
+    @Test
+    void testGetAuthorByNameCriteria(){
+        Author author = authorDao.findAuthorByNameCriteria("Craig","Walls");
+        
+        assertThat (author).isNotNull ();
+        
+    }
 }
