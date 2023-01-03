@@ -15,6 +15,8 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Import;
 import org.springframework.dao.EmptyResultDataAccessException;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.annotation.Commit;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.transaction.annotation.Transactional;
@@ -114,6 +116,22 @@ public class DaoIntegrationTest {
         assertThat(fetched.getTitle()).isEqualTo("New Book");
     }
     
+    @Test
+    void findAllBooks(){
+        List<Book>  books = bookDao.findAllBooks (PageRequest.of(0,10));
+        assertThat (books).isNotNull ();
+        assertThat (books.size()).isEqualTo (5);
+        
+    }
+    
+    @Test
+    void findAllBooksSortByTitle(){
+        List<Book> books = bookDao.findAllBooksByTitle (PageRequest.of (0,10, Sort.by (Sort.Order.desc ("title"))));
+        
+        assertThat (books).isNotNull();
+        assertThat (books.size ()).isEqualTo (5);
+        
+    }
     @Test
     void testSaveBook() {
         Book book = new Book();

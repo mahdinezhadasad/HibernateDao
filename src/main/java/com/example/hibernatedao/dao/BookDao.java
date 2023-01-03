@@ -2,6 +2,7 @@ package com.example.hibernatedao.dao;
 
 
 import com.example.hibernatedao.domain.Book;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -22,4 +23,8 @@ public interface BookDao {
     void deleteBookById(Long id);
     
     List<Book> findAll();
+    
+    List<Book>  findAllBooks(Pageable pageable);
+    
+    List<Book>  findAllBooksByTitle(Pageable pageable);
 }
